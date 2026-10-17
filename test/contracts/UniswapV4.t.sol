@@ -153,7 +153,6 @@ contract UniswapV4Test {
         require(token.totalSupply() == 1e27, "supply changed");
     }
 
-    /// forge-config: default.fuzz.runs = 256
     function testFuzz_RealV4BuySellSettles(uint64 raw) public {
         (Currency currency0,,,,) = factory.key();
         bool buyZeroForOne = Currency.unwrap(currency0) == IMD;
