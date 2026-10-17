@@ -174,6 +174,71 @@ contract MUSEGODTokenTest {
         eq(token.totalSupply(), 1e27);
     }
 
+    function test_RejectedBuysPreserveBalancesFeesAndAllowance() public {
+        address manager = token.POOL_MANAGER();
+        address treasury = token.TREASURY();
+        token.transfer(manager, 100e18);
+        vm.prank(manager);
+        token.approve(SPENDER, 101e18);
+
+        vm.expectRevert(abi.encodeWithSelector(MUSEGODToken.ERC20InvalidReceiver.selector, address(0)));
+        vm.prank(SPENDER);
+        token.transferFrom(manager, address(0), 100e18);
+        eq(token.allowance(manager, SPENDER), 101e18);
+
+        vm.expectRevert(abi.encodeWithSelector(MUSEGODToken.ERC20InsufficientBalance.selector, manager, 100e18, 101e18));
+        vm.prank(SPENDER);
+        token.transferFrom(manager, ALICE, 101e18);
+        eq(token.allowance(manager, SPENDER), 101e18);
+
+        // Approving only the net receipt must not authorize a larger gross debit.
+        vm.prank(manager);
+        token.approve(SPENDER, 98e18);
+        vm.expectRevert(
+            abi.encodeWithSelector(MUSEGODToken.ERC20InsufficientAllowance.selector, SPENDER, 98e18, 100e18)
+        );
+        vm.prank(SPENDER);
+        token.transferFrom(manager, ALICE, 100e18);
+        eq(token.allowance(manager, SPENDER), 98e18);
+        eq(token.balanceOf(manager), 100e18);
+        eq(token.balanceOf(ALICE), 0);
+        eq(token.balanceOf(treasury), 0);
+        eq(token.totalFeesCollected(), 0);
+
+        // A valid approval still permits the full buy after each rejected attempt.
+        vm.prank(manager);
+        token.approve(SPENDER, 100e18);
+        vm.prank(SPENDER);
+        require(token.transferFrom(manager, ALICE, 100e18));
+        eq(token.allowance(manager, SPENDER), 0);
+        eq(token.balanceOf(manager), 0);
+        eq(token.balanceOf(ALICE), 98e18);
+        eq(token.balanceOf(treasury), 2e18);
+        eq(token.totalFeesCollected(), 2e18);
+        eq(token.totalSupply(), 1e27);
+    }
+
+    function test_TreasurySpendingDoesNotReduceCumulativeFees() public {
+        address manager = token.POOL_MANAGER();
+        address treasury = token.TREASURY();
+        token.transfer(manager, 150e18);
+        vm.prank(manager);
+        token.transfer(ALICE, 100e18);
+
+        vm.prank(treasury);
+        token.transfer(BOB, 2e18);
+        eq(token.balanceOf(treasury), 0);
+        eq(token.balanceOf(BOB), 2e18);
+        eq(token.totalFeesCollected(), 2e18);
+
+        vm.prank(manager);
+        token.transfer(ALICE, 50e18);
+        eq(token.balanceOf(treasury), 1e18);
+        eq(token.balanceOf(ALICE), 147e18);
+        eq(token.totalFeesCollected(), 3e18);
+        eq(token.totalSupply(), 1e27);
+    }
+
     function test_NoAdminMintBurnOrUpgradeSurface() public {
         token.transfer(ALICE, 100e18);
         string[18] memory signatures = [

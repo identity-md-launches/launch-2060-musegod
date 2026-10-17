@@ -15,6 +15,8 @@ contract MUSEGODToken {
 
     mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
+    /// @notice Lifetime buy fees in minor units (1 MUSEGOD = 1e18 units).
+    /// @dev This counter never decreases when the treasury spends its tokens.
     uint256 public totalFeesCollected;
 
     event Transfer(address indexed from, address indexed to, uint256 value);
@@ -26,6 +28,7 @@ contract MUSEGODToken {
     error ERC20InsufficientBalance(address sender, uint256 balance, uint256 needed);
     error ERC20InsufficientAllowance(address spender, uint256 allowance, uint256 needed);
 
+    /// @dev The deployer receives every token; only the launch factory distributes them.
     constructor() {
         balanceOf[msg.sender] = TOTAL_SUPPLY;
         emit Transfer(address(0), msg.sender, TOTAL_SUPPLY);
@@ -42,11 +45,15 @@ contract MUSEGODToken {
         return true;
     }
 
+    /// @notice Transfers a gross amount, deducting the fixed fee when sent by the PoolManager.
+    /// @dev Fees round down per transfer and apply to all manager outflows, including withdrawals.
     function transfer(address to, uint256 value) external returns (bool) {
         _transfer(msg.sender, to, value);
         return true;
     }
 
+    /// @notice Transfers a gross amount against the caller's allowance with the same sender-based fee.
+    /// @dev Finite allowances decrease by the gross amount; maximum allowances remain unchanged.
     function transferFrom(address from, address to, uint256 value) external returns (bool) {
         uint256 approved = allowance[from][msg.sender];
         if (approved != type(uint256).max) {

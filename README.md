@@ -55,6 +55,7 @@ No canvas, 3D library or image-generation service is used by the site. PNG rende
 ```sh
 forge build
 FOUNDRY_FUZZ_SEED=0xcbe78dd7537d113d4c5e2cad22f24bec31dae7b994193050f1ff75527aeddb36 forge test
+forge fmt --check
 ```
 
 Foundry pins Solidity **0.8.26**, Cancun, optimizer enabled (200 runs), and `bytecode_hash = "none"`. Build/cache output is scoped to `test/scratch/` and is not part of the submission. Every Solidity import resolves to committed source. The token itself is self-contained, with no linked library, application contract, proxy or hook.
@@ -77,13 +78,17 @@ The token has no constructor arguments. It does not seed liquidity, distribute t
 
 The fee checks **the sender address**, including in `transferFrom`. Every PoolManager outflow incurs `floor(gross / 50)` minor units sent directly to the treasury. This includes liquidity withdrawals, not only swaps. The manager is debited the full gross amount; the recipient gets the remainder. Inputs, including sells and seeding, and ordinary wallet transfers are untaxed. Uniswap's separate 1.25% pool fee is distinct from this token fee. Anyone may read the cumulative `totalFeesCollected()` counter, denominated in MUSEGOD minor units.
 
+Approvals for `transferFrom` cover the **gross** amount, including any fee. A rejected transfer leaves balances, allowances and the cumulative fee counter unchanged. Treasury spending is an ordinary untaxed transfer and does not reduce the lifetime counter. The counter therefore need not equal the treasury's current balance.
+
 Only `approve`, `transfer` and `transferFrom` change state after construction. There is no owner, administrator, privileged deployer power, mint, burn, fee setter, upgrade path or forbidden opcode. Zero-address transfers revert. Infinite allowances follow the usual ERC-20 convention.
 
 `launch.json` carries the exact requested manifest and economics. Its `initialPrice` is the supplied provenance value; the launch service derives the actual opening price using economics and deployed currency order.
 
+The launch service is responsible for deployment on Robinhood Chain, deriving pool price and liquidity from the manifest, routing the swarm allocation through its Merkle distributor, seeding the pool, forwarding any remainder and verifying the deployed source. There are no token initialization calls or settings to apply afterward. Router and frontend integrations must use the recipient's **net** token receipt for buy minimum-output checks: the pool's gross output exceeds the delivered amount by the token fee. Local settlement tests cover the committed PoolManager code, but do not establish compatibility with every router or verify deployed chain state.
+
 ## Actual validation
 
-- `forge build`: passed. `forge test` with the specified seed: **13 passed**, including **3,000 ERC-20 fuzz cases** and **256 real Uniswap v4 buy/sell round trips**. The offline tests use the committed v4 PoolManager implementation at the configured address, with an IMD transfer stand-in. Live Robinhood Chain state and the production launch factory were not forked or invoked.
+- `forge build` and `forge fmt --check`: passed. `forge test` with the specified seed: **15 passed**, including **3,000 ERC-20 fuzz cases** and **256 real Uniswap v4 buy/sell round trips**. Deterministic smoke tests also cover failed-buy rollback and cumulative fees after treasury spending. The offline tests use the committed v4 PoolManager implementation at the configured address, with an IMD transfer stand-in. Live Robinhood Chain state and the production launch factory were not forked or invoked.
 - Production static export, strict JavaScript typecheck and integrity checks: passed.
 - Chromium: **9 pages × 2 widths**, **18 axe audits with zero violations**, **38 interaction checks**, and no unexpected console, script or local-resource errors. The first 390px screen shows the product and its primary action.
 - Pinned taste probe: **15/16** on the served export. The remaining repetition check is the explicitly requested scrolling ticker; it has a pause control and stops for reduced motion. The direct file-only probe also reports the expected missing deployment metadata endpoint; the supplied preview and actual browser tests exercise it explicitly.
