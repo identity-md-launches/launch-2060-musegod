@@ -16,7 +16,7 @@ reverts treated as failures.
 | --- | --- |
 | `contracts/MUSEGODToken.t.sol` | Whole constructor supply and metadata; exact 2% buy fees and events; rounding; untaxed sells and wallet transfers; sender-based delegated fees; finite/infinite allowances and revocation; atomic failures; public cumulative fee accounting after treasury spending; correctly encoded admin/mint/burn attempts; forbidden runtime opcodes. |
 | `contracts/MUSEGODInvariant.t.sol` | Independent balance, allowance and fee ledger over random buys, sells, transfers, self-transfers, approvals, delegated transfers and rejected calls. Checks conservation of all 1e27 units, immutable parameters, and lifetime fees, including treasury spending and contract-held balances. |
-| `contracts/UniswapV4.t.sol` | Existing real-v4 seed/buy/sell smoke tests and fuzz round trips. |
+| `contracts/UniswapV4.t.sol` | Existing real-v4 seed/buy/sell smoke tests and fuzz round trips, plus the documented limit that swaps settled as PoolManager ERC-6909 claims pay no fee until the claim is redeemed as an ERC-20 transfer (which is taxed). |
 | `contracts/MUSEGODLaunch.t.sol` | Single-sided 90% factory seed, 10% distributor allocation and claim transfer, rounding remainder, 2500 IMD opening capitalization, both currency orders, separate trader, exact-input and gross exact-output buys, untaxed sells, and rollback after failed settlement. |
 
 The integration tests execute the committed Uniswap v4 PoolManager implementation
