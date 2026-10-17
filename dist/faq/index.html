@@ -175,7 +175,7 @@
             Yes. The rule checks whether the sender is the PoolManager. Every
             PoolManager outflow is subject to the same 2% token fee, including
             liquidity withdrawals. Fee amounts round down to the nearest minor
-            unit.
+            unit. The token only sees ERC-20 transfers: a swap kept or paid as a Uniswap v4 ERC-6909 claim inside the PoolManager is not taxed until the claim is withdrawn as tokens.
           </p>
         </details>
         <details class="faq-item">

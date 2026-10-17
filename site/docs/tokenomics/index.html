@@ -131,7 +131,8 @@
           including liquidity withdrawals. It goes directly to the fixed
           treasury, rounded down to the nearest minor unit. Sells and ordinary
           transfers have a 0% token fee. The Uniswap v4 LP fee is a separate
-          1.25%.
+          1.25%. Swaps settled as Uniswap v4 ERC-6909 claims inside the
+          PoolManager are not taxed until those claims are withdrawn as tokens.
         </p>
         <h2>No adjustable parameters.</h2>
         <p>

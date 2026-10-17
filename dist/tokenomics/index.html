@@ -180,7 +180,9 @@
           The rule uses the sender address. It applies to all PoolManager
           outflows, including liquidity withdrawals, and to transfers made with
           transferFrom. Sells, factory distribution and ordinary wallet
-          transfers have no token fee.
+          transfers have no token fee. The token only sees ERC-20 transfers:
+          a buy kept as a Uniswap v4 ERC-6909 claim (or a sell paid by burning
+          one) is untaxed until the claim is withdrawn as tokens.
         </p>
         <p>
           The separate Uniswap v4 pool fee is 1.25%. It is not the token’s 2%

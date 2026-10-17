@@ -70,10 +70,24 @@ contract V4LaunchHarness is IUnlockCallback {
         return abi.decode(manager.unlock(abi.encode(uint8(1), zeroForOne, amount)), (BalanceDelta));
     }
 
+    function redeem(uint256 amount) external {
+        manager.unlock(abi.encode(uint8(3), false, int256(amount)));
+    }
+
+    /// @dev Swap whose MUSEGOD leg is settled as ERC-6909 claims (mint/burn) instead of ERC-20 take/settle.
+    function swapWithClaims(bool zeroForOne, int256 amount) external returns (BalanceDelta) {
+        return abi.decode(manager.unlock(abi.encode(uint8(2), zeroForOne, amount)), (BalanceDelta));
+    }
+
     function unlockCallback(bytes calldata data) external returns (bytes memory) {
         require(msg.sender == address(manager), "only manager");
         (uint8 mode, bool zeroForOne, int256 amount) = abi.decode(data, (uint8, bool, int256));
         BalanceDelta delta;
+        if (mode == 3) {
+            manager.burn(address(this), uint256(uint160(address(token))), uint256(amount));
+            manager.take(Currency.wrap(address(token)), address(this), uint256(amount));
+            return "";
+        }
         if (mode == 0) {
             bool token0 = Currency.unwrap(key.currency0) == address(token);
             int24 lower = token0 ? int24(60) : int24(-887220);
@@ -91,13 +105,17 @@ contract V4LaunchHarness is IUnlockCallback {
             uint160 limit = zeroForOne ? TickMath.MIN_SQRT_PRICE + 1 : TickMath.MAX_SQRT_PRICE - 1;
             delta = manager.swap(key, SwapParams(zeroForOne, amount, limit), "");
         }
-        settle(key.currency0, delta.amount0());
-        settle(key.currency1, delta.amount1());
+        settle(key.currency0, delta.amount0(), mode == 2);
+        settle(key.currency1, delta.amount1(), mode == 2);
         return abi.encode(delta);
     }
 
-    function settle(Currency currency, int128 delta) private {
-        if (delta < 0) {
+    function settle(Currency currency, int128 delta, bool claims) private {
+        if (claims && Currency.unwrap(currency) == address(token)) {
+            uint256 id = uint256(uint160(address(token)));
+            if (delta < 0) manager.burn(address(this), id, uint256(uint128(-delta)));
+            else if (delta > 0) manager.mint(address(this), id, uint256(uint128(delta)));
+        } else if (delta < 0) {
             manager.sync(currency);
             require(TestERC20(Currency.unwrap(currency)).transfer(address(manager), uint256(uint128(-delta))));
             require(manager.settle() == uint256(uint128(-delta)), "input arrived short");
@@ -167,5 +185,34 @@ contract UniswapV4Test {
         require(token.balanceOf(address(factory)) == 0, "sell failed");
         require(token.totalFeesCollected() == fees, "sell taxed");
         require(token.totalSupply() == 1e27, "supply changed");
+    }
+
+    /// @dev Documents a known limit: the token only sees ERC-20 transfers, so a buy whose output
+    /// is kept as a PoolManager ERC-6909 claim (and a sell paid by burning that claim) pays no fee.
+    function test_ClaimSettledSwapsAreUntaxedKnownLimit() public {
+        (Currency currency0,,,,) = factory.key();
+        bool buyZeroForOne = Currency.unwrap(currency0) == IMD;
+        uint256 id = uint256(uint160(address(token)));
+        uint256 managerBefore = token.balanceOf(MANAGER);
+        paired.mint(address(factory), 1e18);
+        BalanceDelta bought = factory.swapWithClaims(buyZeroForOne, -int256(1e18));
+        uint256 gross = uint256(uint128(buyZeroForOne ? bought.amount1() : bought.amount0()));
+        require(gross > 0, "buy empty");
+        require(IPoolManager(MANAGER).balanceOf(address(factory), id) == gross, "claim not minted");
+        require(token.balanceOf(address(factory)) == 0, "erc20 delivered");
+        require(token.balanceOf(MANAGER) == managerBefore, "manager balance moved");
+        require(token.totalFeesCollected() == 0 && token.balanceOf(token.TREASURY()) == 0, "claim buy taxed");
+        uint256 beforePair = paired.balanceOf(address(factory));
+        factory.swapWithClaims(!buyZeroForOne, -int256(gross));
+        require(IPoolManager(MANAGER).balanceOf(address(factory), id) == 0, "claim not burned");
+        require(paired.balanceOf(address(factory)) > beforePair, "sell paid no IMD");
+        require(token.totalFeesCollected() == 0, "claim sell taxed");
+        // Redeeming a claim later is an ERC-20 outflow and does pay the fee.
+        paired.mint(address(factory), 1e18);
+        bought = factory.swapWithClaims(buyZeroForOne, -int256(1e18));
+        gross = uint256(uint128(buyZeroForOne ? bought.amount1() : bought.amount0()));
+        factory.redeem(gross);
+        require(token.totalFeesCollected() == gross / 50, "redeemed claim untaxed");
+        require(token.balanceOf(address(factory)) == gross - gross / 50, "redeem net wrong");
     }
 }
