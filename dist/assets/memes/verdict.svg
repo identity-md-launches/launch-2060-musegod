@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600"><rect width="600" height="600" fill="#181818"/><path d="M0 0h600v600H0Z" fill="#fff"/><text x="300" y="65" fill="#181818" font-family="sans-serif" font-weight="700" font-size="28" text-anchor="middle">THE SWARM HAS SPOKEN</text><rect x="45" y="100" width="510" height="390" rx="195" fill="#181818"/><g transform="translate(140 106) rotate(0 160 160) scale(0.8)">
+<defs><linearGradient id="robe" x1="85" y1="180" x2="300" y2="405" gradientUnits="userSpaceOnUse"><stop stop-color="white"/><stop offset="1" stop-color="#bbb"/></linearGradient><linearGradient id="gold" x1="100" y1="30" x2="300" y2="250" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset=".35" stop-color="#FFD700"/><stop offset="1" stop-color="#a88900"/></linearGradient><filter id="glow" x="-80%" y="-100%" width="260%" height="300%"><feGaussianBlur stdDeviation="5"/></filter></defs>
+<ellipse cx="218" cy="419" rx="119" ry="12" fill="#000" opacity=".2"/>
+<ellipse cx="217" cy="48" rx="91" ry="24" stroke="#FFD700" stroke-width="6" filter="url(#glow)"/>
+<ellipse cx="217" cy="48" rx="91" ry="24" stroke="#FFD700" stroke-width="3"/>
+<path d="M139 212C110 246 101 324 105 397C160 425 273 426 329 398C322 314 309 245 281 213" fill="url(#robe)" stroke="#181818" stroke-width="5"/>
+<path d="M158 229L129 398M280 232L304 402M187 249L177 410M247 252L263 411" stroke="#fff" stroke-width="4" opacity=".6"/>
+<path d="M126 218C101 202 101 155 112 130C129 82 176 72 218 75C271 76 313 105 319 152C324 186 319 213 303 225" fill="url(#robe)" stroke="#181818" stroke-width="5"/>
+<path d="M139 129C162 109 272 107 291 147C309 185 281 224 219 226C161 227 126 204 130 170C131 152 132 140 139 129Z" fill="#fff" stroke="#bbb" stroke-width="3"/>
+<circle cx="179" cy="170" r="8" fill="#181818"/><circle cx="259" cy="170" r="8" fill="#181818"/>
+<circle cx="177" cy="167" r="2" fill="#fff"/><circle cx="257" cy="167" r="2" fill="#fff"/>
+<path d="M205 187Q218 201 232 187" stroke="#181818" stroke-width="4" stroke-linecap="round"/>
+<path d="M128 219Q216 258 306 219L293 252Q219 278 139 252Z" fill="white" stroke="#181818" stroke-width="4"/>
+<circle cx="218" cy="250" r="18" fill="url(#gold)" stroke="#181818" stroke-width="3"/><path d="M218 238L221 247L230 250L221 253L218 262L215 253L206 250L215 247Z" fill="white"/>
+<path d="M140 100L133 64L167 82L177 47L203 76L218 34L237 76L262 48L269 84L301 65L291 105Q217 85 140 100Z" fill="url(#gold)" stroke="#181818" stroke-width="4" stroke-linejoin="round"/>
+<path d="M145 103Q219 85 289 107" stroke="#FFD700" stroke-width="8"/>
+<path d="M130 253C93 243 76 268 84 294C90 318 123 322 138 297" fill="url(#robe)" stroke="#181818" stroke-width="5"/>
+<path d="M309 250C344 263 356 301 339 318C322 332 300 315 294 285" fill="url(#robe)" stroke="#181818" stroke-width="5"/>
+<g id="staff"><path d="M75 177L122 411" stroke="#181818" stroke-width="13"/><path d="M75 177L122 411" stroke="url(#gold)" stroke-width="7"/><circle cx="71" cy="153" r="28" fill="url(#gold)" stroke="#181818" stroke-width="4"/><ellipse cx="71" cy="153" rx="42" ry="17" transform="rotate(-35 71 153)" stroke="#FFD700" stroke-width="4"/><path d="M70 138L74 149L85 153L74 157L70 168L66 157L55 153L66 149Z" fill="#fff"/></g>
+</g><g transform="translate(380 370) rotate(-12)"><rect width="140" height="85" rx="8" fill="#FFD700" stroke="#181818" stroke-width="5"/><text x="70" y="54" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="30" fill="#181818">WORTHY</text></g><text x="300" y="555" fill="#181818" font-family="sans-serif" font-weight="700" font-size="46" text-anchor="middle">Plush wins.</text></svg>

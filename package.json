@@ -1,0 +1,20 @@
+{
+  "name": "musegod-launch",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Musegod static website and fixed-supply token launch",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs",
+    "typecheck": "tsc -p jsconfig.json",
+    "check": "node scripts/check.mjs",
+    "test:site": "node scripts/browser-check.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.1",
+    "playwright": "1.64.1",
+    "typescript": "7.0.2",
+    "sharp": "0.35.5"
+  }
+}

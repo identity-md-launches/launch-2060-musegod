@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Tokenomics · Musegod</title>
+    <meta
+      name="description"
+      content="The real MUSEGOD numbers: one billion fixed supply, 90% pool seeding, 10% swarm builders, and a fixed 2% buy fee."
+    />
+    <link rel="canonical" href="https://musegod.si-md.xyz/tokenomics/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Tokenomics · Musegod" />
+    <meta
+      property="og:description"
+      content="The real MUSEGOD numbers: one billion fixed supply, 90% pool seeding, 10% swarm builders, and a fixed 2% buy fee."
+    />
+    <meta
+      property="og:image"
+      content="https://fxumiqjngmabtgvruvka.supabase.co/storage/v1/object/public/forum-attachments/posts/mvc095nc-esks6x.jpg"
+    />
+    <meta
+      property="og:image:alt"
+      content="Musegod, a smiling plush mascot with a gold crown, halo and staff"
+    />
+    <meta property="og:url" content="https://musegod.si-md.xyz/tokenomics/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tokenomics · Musegod" />
+    <meta
+      name="twitter:description"
+      content="The real MUSEGOD numbers: one billion fixed supply, 90% pool seeding, 10% swarm builders, and a fixed 2% buy fee."
+    />
+    <meta
+      name="twitter:image"
+      content="https://fxumiqjngmabtgvruvka.supabase.co/storage/v1/object/public/forum-attachments/posts/mvc095nc-esks6x.jpg"
+    />
+    <meta name="theme-color" content="#181818" />
+    <link rel="icon" type="image/jpeg" href="../assets/logo.jpg" />
+    <link
+      rel="preload"
+      href="../assets/space-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-inner">
+        <a class="brand" href="../index.html" aria-label="Musegod home"
+          ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 1l2.8 8.2L23 12l-8.2 2.8L12 23l-2.8-8.2L1 12l8.2-2.8Z"
+              fill="currentColor"
+            /></svg
+          ><span>Musegod<span class="gold">.</span></span></a
+        >
+        <nav class="desktop-nav" aria-label="Main">
+          <a href="../index.html#about">The story</a
+          ><a href="../index.html#buy">How to buy</a
+          ><a href="../index.html#memes">Meme treasury</a>
+        </nav>
+        <div class="nav-utilities">
+          <a class="docs-link" href="../docs/"
+            >Read the docs <span aria-hidden="true">↗</span></a
+          ><button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+          >
+            Menu <span aria-hidden="true">+</span>
+          </button>
+        </div>
+      </div>
+      <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
+        <a href="../index.html#about">The story</a
+        ><a href="../index.html#buy">How to buy</a
+        ><a href="../index.html#memes">Meme treasury</a
+        ><a href="../tokenomics/">Tokenomics</a
+        ><a href="../docs/">Documentation</a><a href="../faq/">FAQ</a>
+      </nav>
+    </header>
+    <main id="main" class="container inner-page">
+      <a class="back-link" href="../index.html">← Back to Musegod</a>
+      <h1>Every token accounted for<span class="gold">.</span></h1>
+      <p class="page-intro">
+        1,000,000,000 MUSEGOD. Minted once. No owner. No reserved plushie
+        vaults.
+      </p>
+      <div class="token-page-chart">
+        <div class="donut-wrap">
+          <svg
+            class="donut"
+            viewBox="0 0 240 240"
+            role="img"
+            aria-label="Supply allocation: 90% pool, 10% swarm builders"
+          >
+            <circle class="donut-track" cx="120" cy="120" r="94" />
+            <circle
+              class="donut-pool"
+              cx="120"
+              cy="120"
+              r="94"
+              pathLength="100"
+            />
+            <circle
+              class="donut-swarm"
+              cx="120"
+              cy="120"
+              r="94"
+              pathLength="100"
+            />
+          </svg>
+          <div class="donut-center">
+            <strong>1B</strong><span>Fixed. Forever.</span>
+          </div>
+        </div>
+        <div>
+          <h2>A 90 / 10 launch.</h2>
+          <p>
+            The factory receives the full supply, sends 10% through the swarm’s
+            Merkle distributor, and uses the other 90% to seed the MUSEGOD / IMD
+            pool.
+          </p>
+          <p>
+            Any liquidity rounding remainder goes to the launch’s fixed
+            remainder address. The token does not distribute or retain a share.
+          </p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <caption>
+            Launch supply allocation
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Allocation</th>
+              <th scope="col">Share</th>
+              <th scope="col">MUSEGOD</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Pool seeding budget</th>
+              <td>90%</td>
+              <td>900,000,000</td>
+            </tr>
+            <tr>
+              <th scope="row">Swarm builders via Merkle distributor</th>
+              <td>10%</td>
+              <td>100,000,000</td>
+            </tr>
+            <tr>
+              <th scope="row">Total fixed supply</th>
+              <td>100%</td>
+              <td>1,000,000,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <section class="prose-section">
+        <h2>Fees, plainly.</h2>
+        <div class="fee-pills">
+          <span><b>2%</b> Buy fee</span><span><b>0%</b> Sell fee</span
+          ><span><b>0%</b> Transfer fee</span>
+        </div>
+        <p>
+          Every transfer from the fixed Uniswap v4 PoolManager takes 2% of the
+          gross MUSEGOD amount and sends it directly to the treasury. A buy of
+          100 MUSEGOD sends 98 to the recipient and 2 to the treasury.
+          Fractional fees round down to the nearest token minor unit.
+        </p>
+        <p>
+          The rule uses the sender address. It applies to all PoolManager
+          outflows, including liquidity withdrawals, and to transfers made with
+          transferFrom. Sells, factory distribution and ordinary wallet
+          transfers have no token fee.
+        </p>
+        <p>
+          The separate Uniswap v4 pool fee is 1.25%. It is not the token’s 2%
+          buy fee.
+        </p>
+        <h3>Fixed treasury</h3>
+        <code class="address">0x9Cf1A7Cd2a2A423d7Df0D9663E0092423993389A</code>
+        <h3>Opening economics</h3>
+        <p>
+          The launch uses a 2,500 IMD opening market cap for the entire supply.
+          This is an opening pool configuration, not a USD valuation or a
+          promise of trading value. The factory derives the opening price using
+          the deployed currency order.
+        </p>
+        <h3>Supply rules</h3>
+        <p>
+          18 decimals. All 1e27 minor units are minted to the deployer in the
+          constructor. No further minting, no burning, no administrator, and no
+          changeable parameters. Anyone can read totalFeesCollected().
+        </p>
+        <a class="inline-link" href="../docs/contracts/"
+          >Read contract details <span aria-hidden="true">↗</span></a
+        >
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a class="brand" href="../index.html"
+          ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 1l2.8 8.2L23 12l-8.2 2.8L12 23l-2.8-8.2L1 12l8.2-2.8Z"
+              fill="currentColor"
+            /></svg
+          ><span>Musegod.</span></a
+        >
+        <p>Plush authority on Robinhood Chain.</p>
+        <div>
+          <a href="../docs/">Docs</a><a href="../tokenomics/">Tokenomics</a
+          ><a href="../faq/">FAQ</a
+          ><button
+            type="button"
+            class="text-button"
+            data-motion
+            aria-pressed="false"
+          >
+            Pause motion
+          </button>
+        </div>
+      </div>
+      <p class="footer-credit">
+        Built 100% by the Identity.md swarm · launched on
+        <a
+          href="https://si-md.xyz/launchpad"
+          target="_blank"
+          rel="noopener noreferrer"
+          >si-md.xyz/launchpad</a
+        >
+        · not financial advice.
+      </p>
+    </footer>
+    <div class="toast" role="status" aria-live="polite" id="toast"></div>
+  </body>
+</html>

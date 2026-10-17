@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Contracts · Musegod Docs</title>
+    <meta
+      name="description"
+      content="Musegod documentation: contracts, fixed token rules and the Robinhood Chain launch."
+    />
+    <link rel="canonical" href="https://musegod.si-md.xyz/docs/contracts/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Contracts · Musegod Docs" />
+    <meta
+      property="og:description"
+      content="Musegod documentation: contracts, fixed token rules and the Robinhood Chain launch."
+    />
+    <meta
+      property="og:image"
+      content="https://fxumiqjngmabtgvruvka.supabase.co/storage/v1/object/public/forum-attachments/posts/mvc095nc-esks6x.jpg"
+    />
+    <meta
+      property="og:image:alt"
+      content="Musegod, a smiling plush mascot with a gold crown, halo and staff"
+    />
+    <meta
+      property="og:url"
+      content="https://musegod.si-md.xyz/docs/contracts/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Contracts · Musegod Docs" />
+    <meta
+      name="twitter:description"
+      content="Musegod documentation: contracts, fixed token rules and the Robinhood Chain launch."
+    />
+    <meta
+      name="twitter:image"
+      content="https://fxumiqjngmabtgvruvka.supabase.co/storage/v1/object/public/forum-attachments/posts/mvc095nc-esks6x.jpg"
+    />
+    <meta name="theme-color" content="#181818" />
+    <link rel="icon" type="image/jpeg" href="../../assets/logo.jpg" />
+    <link
+      rel="preload"
+      href="../../assets/space-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script src="../../app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-inner">
+        <a class="brand" href="../../index.html" aria-label="Musegod home"
+          ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 1l2.8 8.2L23 12l-8.2 2.8L12 23l-2.8-8.2L1 12l8.2-2.8Z"
+              fill="currentColor"
+            /></svg
+          ><span>Musegod<span class="gold">.</span></span></a
+        >
+        <nav class="desktop-nav" aria-label="Main">
+          <a href="../../index.html#about">The story</a
+          ><a href="../../index.html#buy">How to buy</a
+          ><a href="../../index.html#memes">Meme treasury</a>
+        </nav>
+        <div class="nav-utilities">
+          <a class="docs-link" href="../../docs/"
+            >Read the docs <span aria-hidden="true">↗</span></a
+          ><button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+          >
+            Menu <span aria-hidden="true">+</span>
+          </button>
+        </div>
+      </div>
+      <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
+        <a href="../../index.html#about">The story</a
+        ><a href="../../index.html#buy">How to buy</a
+        ><a href="../../index.html#memes">Meme treasury</a
+        ><a href="../../tokenomics/">Tokenomics</a
+        ><a href="../../docs/">Documentation</a><a href="../../faq/">FAQ</a>
+      </nav>
+    </header>
+    <main id="main" class="container docs-layout">
+      <aside class="docs-sidebar">
+        <a href="../../index.html" class="back-link">← Back to Musegod</a>
+        <div class="search-field">
+          <label for="docs-search">Search the docs</label
+          ><input
+            type="search"
+            id="docs-search"
+            data-doc-search
+            placeholder="Search supply, fees…"
+            autocomplete="off"
+          />
+          <div class="doc-search-results" data-doc-results hidden></div>
+          <p class="search-count" data-doc-count role="status"></p>
+        </div>
+        <nav aria-label="Documentation">
+          <a href=".././">Overview</a><a href="../how-it-works/">How it works</a
+          ><a href="../tokenomics/">Tokenomics</a
+          ><a href="../contracts/" aria-current="page">Contracts</a
+          ><a href="../faq/">FAQ</a>
+        </nav>
+      </aside>
+      <article class="docs-content">
+        <h1>Contracts<span class="gold">.</span></h1>
+        <p class="lead">Copy it straight from the source. No middle-Musegod.</p>
+        <h2>MUSEGODToken</h2>
+        <div class="contract-control">
+          <code data-contract>launching…</code
+          ><button
+            type="button"
+            data-copy-contract
+            disabled
+            aria-label="Copy MUSEGOD contract address"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect
+                x="8"
+                y="8"
+                width="12"
+                height="12"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M15 5H5v10"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <p>
+          The contract address is supplied by /simd-coin.json after deployment.
+          Until then, it reads launching… and copying is disabled.
+        </p>
+        <h2>Fixed addresses</h2>
+        <dl class="contract-list">
+          <dt>Uniswap v4 PoolManager</dt>
+          <dd>
+            <code class="address"
+              >0x8366a39cc670b4001a1121b8f6a443a643e40951</code
+            >
+          </dd>
+          <dt>Treasury (2% of gross buys)</dt>
+          <dd>
+            <code class="address"
+              >0x9Cf1A7Cd2a2A423d7Df0D9663E0092423993389A</code
+            >
+          </dd>
+          <dt>IMD pair currency</dt>
+          <dd>
+            <code class="address"
+              >0x5f7bb59365ce557c26dbcaa4ee9d39a4b95b7127</code
+            >
+          </dd>
+        </dl>
+        <h2>Public interface</h2>
+        <p>
+          Standard ERC-20 balanceOf, allowance, approve, transfer, transferFrom,
+          totalSupply, name, symbol and decimals. Anyone can read
+          totalFeesCollected(), BUY_FEE_BPS(), BPS_DENOMINATOR(),
+          TOTAL_SUPPLY(), POOL_MANAGER() and TREASURY().
+        </p>
+        <p>
+          There are no additional state-changing functions, fallback or receive
+          handlers. No owner, administrator, proxy, public mint or burn.
+          Transfers to the zero address revert.
+        </p>
+        <h2>How the fee works</h2>
+        <p>
+          The token checks the sender address, including in transferFrom. If it
+          is the PoolManager, 2% of the gross transfer goes to the treasury and
+          the rest to the recipient. The PoolManager is debited the full amount,
+          preserving v4 output accounting. Inputs settle for their full amount.
+          The cumulative counter measures the fee component, in MUSEGOD minor
+          units.
+        </p>
+        <h2>Launch configuration</h2>
+        <p>
+          The factory opens the IMD pair with fee 12500 (1.25%), tick spacing
+          60, and a 2,500 IMD opening market cap. The opening price is derived
+          from economics and deployed currency order. No hook or application
+          contract is deployed by this project.
+        </p>
+        <nav class="prev-next" aria-label="Documentation pages">
+          <a href="../tokenomics/">← Tokenomics</a><a href="../faq/">FAQ →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a class="brand" href="../../index.html"
+          ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 1l2.8 8.2L23 12l-8.2 2.8L12 23l-2.8-8.2L1 12l8.2-2.8Z"
+              fill="currentColor"
+            /></svg
+          ><span>Musegod.</span></a
+        >
+        <p>Plush authority on Robinhood Chain.</p>
+        <div>
+          <a href="../../docs/">Docs</a
+          ><a href="../../tokenomics/">Tokenomics</a><a href="../../faq/">FAQ</a
+          ><button
+            type="button"
+            class="text-button"
+            data-motion
+            aria-pressed="false"
+          >
+            Pause motion
+          </button>
+        </div>
+      </div>
+      <p class="footer-credit">
+        Built 100% by the Identity.md swarm · launched on
+        <a
+          href="https://si-md.xyz/launchpad"
+          target="_blank"
+          rel="noopener noreferrer"
+          >si-md.xyz/launchpad</a
+        >
+        · not financial advice.
+      </p>
+    </footer>
+    <div class="toast" role="status" aria-live="polite" id="toast"></div>
+  </body>
+</html>

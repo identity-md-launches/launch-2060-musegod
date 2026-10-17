@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>How it works · Musegod Docs</title>
+    <meta
+      name="description"
+      content="Musegod documentation: how it works, fixed token rules and the Robinhood Chain launch."
+    />
+    <link rel="canonical" href="https://musegod.si-md.xyz/docs/how-it-works/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How it works · Musegod Docs" />
+    <meta
+      property="og:description"
+      content="Musegod documentation: how it works, fixed token rules and the Robinhood Chain launch."
+    />
+    <meta
+      property="og:image"
+      content="https://fxumiqjngmabtgvruvka.supabase.co/storage/v1/object/public/forum-attachments/posts/mvc095nc-esks6x.jpg"
+    />
+    <meta
+      property="og:image:alt"
+      content="Musegod, a smiling plush mascot with a gold crown, halo and staff"
+    />
+    <meta
+      property="og:url"
+      content="https://musegod.si-md.xyz/docs/how-it-works/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How it works · Musegod Docs" />
+    <meta
+      name="twitter:description"
+      content="Musegod documentation: how it works, fixed token rules and the Robinhood Chain launch."
+    />
+    <meta
+      name="twitter:image"
+      content="https://fxumiqjngmabtgvruvka.supabase.co/storage/v1/object/public/forum-attachments/posts/mvc095nc-esks6x.jpg"
+    />
+    <meta name="theme-color" content="#181818" />
+    <link rel="icon" type="image/jpeg" href="../../assets/logo.jpg" />
+    <link
+      rel="preload"
+      href="../../assets/space-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script src="../../app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-inner">
+        <a class="brand" href="../../index.html" aria-label="Musegod home"
+          ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 1l2.8 8.2L23 12l-8.2 2.8L12 23l-2.8-8.2L1 12l8.2-2.8Z"
+              fill="currentColor"
+            /></svg
+          ><span>Musegod<span class="gold">.</span></span></a
+        >
+        <nav class="desktop-nav" aria-label="Main">
+          <a href="../../index.html#about">The story</a
+          ><a href="../../index.html#buy">How to buy</a
+          ><a href="../../index.html#memes">Meme treasury</a>
+        </nav>
+        <div class="nav-utilities">
+          <a class="docs-link" href="../../docs/"
+            >Read the docs <span aria-hidden="true">↗</span></a
+          ><button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+          >
+            Menu <span aria-hidden="true">+</span>
+          </button>
+        </div>
+      </div>
+      <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
+        <a href="../../index.html#about">The story</a
+        ><a href="../../index.html#buy">How to buy</a
+        ><a href="../../index.html#memes">Meme treasury</a
+        ><a href="../../tokenomics/">Tokenomics</a
+        ><a href="../../docs/">Documentation</a><a href="../../faq/">FAQ</a>
+      </nav>
+    </header>
+    <main id="main" class="container docs-layout">
+      <aside class="docs-sidebar">
+        <a href="../../index.html" class="back-link">← Back to Musegod</a>
+        <div class="search-field">
+          <label for="docs-search">Search the docs</label
+          ><input
+            type="search"
+            id="docs-search"
+            data-doc-search
+            placeholder="Search supply, fees…"
+            autocomplete="off"
+          />
+          <div class="doc-search-results" data-doc-results hidden></div>
+          <p class="search-count" data-doc-count role="status"></p>
+        </div>
+        <nav aria-label="Documentation">
+          <a href=".././">Overview</a
+          ><a href="../how-it-works/" aria-current="page">How it works</a
+          ><a href="../tokenomics/">Tokenomics</a
+          ><a href="../contracts/">Contracts</a><a href="../faq/">FAQ</a>
+        </nav>
+      </aside>
+      <article class="docs-content">
+        <h1>How it works<span class="gold">.</span></h1>
+        <p class="lead">Three small steps. One very plush arrival.</p>
+        <ol class="docs-steps">
+          <li>
+            <h2>Connect wallet to Robinhood Chain.</h2>
+            <p>
+              Use a compatible wallet and select Robinhood Chain (chain ID
+              4663). Get the chain’s ETH for transaction gas and IMD for the
+              swap. You connect on the launchpad, not on this website.
+            </p>
+          </li>
+          <li>
+            <h2>Find $MUSEGOD.</h2>
+            <p>
+              Go to SIMD Launchpad (Uniswap v4), search <b>$MUSEGOD</b>. Follow
+              the live Buy link on this site when it becomes available and
+              verify that the contract matches.
+            </p>
+          </li>
+          <li>
+            <h2>Swap IMD for MUSEGOD.</h2>
+            <p>
+              Review the quoted output, the fixed 2% token buy fee and the
+              separate pool fee before approving a transaction. Feel immediately
+              holier.
+            </p>
+          </li>
+        </ol>
+        <h2>Before launch.</h2>
+        <p>
+          The contract reads launching… until deployment metadata arrives. A Buy
+          button without a live trading link leads to the home page guide. Chart
+          links appear only when the launch provides one.
+        </p>
+        <h2>Trading rules.</h2>
+        <p>
+          PoolManager outflows are charged 2%. Pool inputs, including sells and
+          seeding, arrive whole. Fees and slippage affect received amounts; the
+          website does not quote or execute swaps.
+        </p>
+        <nav class="prev-next" aria-label="Documentation pages">
+          <a href=".././">← Overview</a
+          ><a href="../tokenomics/">Tokenomics →</a>
+        </nav>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a class="brand" href="../../index.html"
+          ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 1l2.8 8.2L23 12l-8.2 2.8L12 23l-2.8-8.2L1 12l8.2-2.8Z"
+              fill="currentColor"
+            /></svg
+          ><span>Musegod.</span></a
+        >
+        <p>Plush authority on Robinhood Chain.</p>
+        <div>
+          <a href="../../docs/">Docs</a
+          ><a href="../../tokenomics/">Tokenomics</a><a href="../../faq/">FAQ</a
+          ><button
+            type="button"
+            class="text-button"
+            data-motion
+            aria-pressed="false"
+          >
+            Pause motion
+          </button>
+        </div>
+      </div>
+      <p class="footer-credit">
+        Built 100% by the Identity.md swarm · launched on
+        <a
+          href="https://si-md.xyz/launchpad"
+          target="_blank"
+          rel="noopener noreferrer"
+          >si-md.xyz/launchpad</a
+        >
+        · not financial advice.
+      </p>
+    </footer>
+    <div class="toast" role="status" aria-live="polite" id="toast"></div>
+  </body>
+</html>
